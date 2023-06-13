@@ -2,8 +2,14 @@
 name = "zero2prod"
 version = "0.1.0"
 edition = "2021"
+authors = ["Jake deVarennes <deVarennesjacob@gmail.com>"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/main.rs"
+name = "zero2prod"
 
 [target.x86_64-unknown-linux-gnu]
 rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
@@ -12,3 +18,5 @@ rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
 actix-web = "4"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
+[dev-dependencies]
+reqwest = "0.11"
