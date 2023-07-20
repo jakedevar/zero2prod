@@ -3,17 +3,17 @@ use actix_web::{web, App, HttpResponse, HttpServer};
 use std::net::TcpListener;
 
 #[derive(serde::Deserialize)]
-struct FormData {
+pub struct FormData {
     email: String,
-    username: String,
+    name: String,
+}
+
+async fn subscribe(_form: web::Form<FormData>) -> HttpResponse {
+    HttpResponse::Ok().finish()
 }
 
 async fn health_check() -> HttpResponse {
     HttpResponse::Ok().finish()
-}
-
-async fn subscribe(form: web::Form<FormData>) -> String {
-    format!("Welcome {}!", form.username)
 }
 
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
